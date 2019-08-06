@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # project apps:
+    'apps.employees'
 ]
 
 MIDDLEWARE = [
@@ -99,6 +102,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# Custom Authentication user model used for both master(admin) and employee
+AUTH_USER_MODEL = 'employees.User'
 
 
 # Internationalization
