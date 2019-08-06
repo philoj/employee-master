@@ -13,16 +13,16 @@ class RequireAdminAccessMixin(LoginRequiredMixin, View):
 
 
 class LoginView(DjangoLoginView):
-    pass
+    template_name = 'apps/employees/login.html'
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
-    pass
+    template_name = 'apps/employees/home.html'
 
 
 class AddEmployeeView(RequireAdminAccessMixin, ModelFormMixin, TemplateView):
-    pass
+    template_name = 'apps/employees/employee-add.html'
 
 
-class EmployeeList(RequireAdminAccessMixin, TemplateResponseMixin, ContextMixin, ListView):
-    pass
+class EmployeeList(RequireAdminAccessMixin, ListView):
+    template_name = 'apps/employees/employee-list.html'
