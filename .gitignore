@@ -1,0 +1,4 @@
+\.idea/
+*\.sh
+*\.pyc
+__pycache__/
