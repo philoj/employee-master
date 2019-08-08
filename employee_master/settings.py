@@ -104,6 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Custom Authentication user model used for both master(admin) and employee
 AUTH_USER_MODEL = 'employees.User'
 LOGIN_URL = reverse_lazy('login')
+LOGOUT_REDIRECT_URL = reverse_lazy('home')
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

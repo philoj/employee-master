@@ -1,1 +1,5 @@
-Home
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <a href="{% url 'employee-add' %}">Add</a>
+{% endblock %}

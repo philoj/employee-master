@@ -1,10 +1,11 @@
 from django.urls import path
 
-from apps.employees.views import HomeView, LoginView, EmployeeList
+from apps.employees.views import HomeView, LoginView, EmployeeList, AddEmployeeView, LogoutView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('login', LoginView.as_view(), name='login'),
-    path('add', EmployeeList.as_view(), name='employee-add'),
+    path('logout', LogoutView.as_view(), name='logout'),
+    path('add', AddEmployeeView.as_view(), name='employee-add'),
     path('employees', EmployeeList.as_view(), name='employees-list'),
 ]
