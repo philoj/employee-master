@@ -1,9 +1,30 @@
 {% extends 'base.html' %}
 {% block title %}Add{% endblock %}
+{% block  bread_crumbs %}
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'employee-add' %}">Add Employee</a></li>
+    </ul>
+{% endblock %}
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button>Submit</button>
-</form>
+    <div class="pure-g">
+        <div class="pure-u">
+            <form class="pure-form pure-form-stacked" method="post" enctype="multipart/form-data">
+                <fieldset>
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="pure-control-group">
+                            {{ field.label_tag }}
+                            {{ field }}
+                        {% if field.errors %}{{ field.errors }}{% endif %}
+                        </div>
+                    {% endfor %}
+                        {% if field.non_field_errors %}{{ field.non_field_errors }}{% endif %}
+                    <button type="submit" class="pure-button pure-button-primary">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+
 {% endblock %}

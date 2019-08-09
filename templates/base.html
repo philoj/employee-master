@@ -1,10 +1,38 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles/vendors/pure-release-1.0.1/pure-min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">
+    {% block extra_styles %}{% endblock %}
 </head>
 <body>
-{% block content %}{% endblock %}
+<section class="nav-bar">
+    <div class="breadcrumbs">
+        {% block  bread_crumbs %}
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+            </ul>
+        {% endblock %}
+    </div>
+    <div class="auth-data">
+        {% if user.is_authenticated %}
+            <div class="user-data">
+                {{ user.username }}</div>
+            <div class="log-in-btn">
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button>Logout</button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+</section>
+<section class="content">
+    <div class="content-wrapper">{% block content %}{% endblock %}</div>
+</section>
 </body>
 </html>

@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% block title %}Login{% endblock %}
+{% block title %}Edit{% endblock %}
 {% block  bread_crumbs %}
     <ul>
         <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'employee-edit' object.id %}">Edit {{ object.username }} </a></li>
     </ul>
 {% endblock %}
 {% block content %}

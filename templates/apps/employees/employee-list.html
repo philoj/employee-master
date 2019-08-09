@@ -1,3 +1,44 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}List{% endblock %}
-{% block content %}{% endblock %}
+{% block extra_styles %}
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/gallery.css' %}">
+{% endblock %}
+{% block  bread_crumbs %}
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+    </ul>
+{% endblock %}
+{% block content %}
+    <div class="gallery-container">
+        {% static 'images/profile-pic-placehilder.png' as profile_placeholder %}
+        {% for employee in object_list %}
+            {% if user.is_admin or user == employee %}
+                <a href="{% url 'employee-edit' employee.id %}" title="Edit profile">
+                    <div class="card">
+                        <img src="
+
+                                {% if employee.profile_picture.name %}{{ employee.profile_picture.url }}{% else %}{{ profile_placeholder }}{% endif %}"/>
+                        <h3>{{ employee.full_name }}</h3>
+                        <p>{{ employee.is_admin|yesno:'Admin,Employee' }}</p>
+                    </div>
+                </a>
+            {% else %}
+                <div class="card">
+                    <img src="
+
+                            {% if employee.profile_picture.name %}{{ employee.profile_picture.url }}{% else %}{{ profile_placeholder }}{% endif %}"/>
+                    <h3>{{ employee.full_name }}</h3>
+                    <p>{{ employee.is_admin|yesno:'Admin,Employee' }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% if user.is_admin %}
+            <a href="{% url 'employee-add' %}">
+                <div class="card add-btn">
+                    <img src="{% static 'images/add-icon.png' %}"/>
+                </div>
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}
